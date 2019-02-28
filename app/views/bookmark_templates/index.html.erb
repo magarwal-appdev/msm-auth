@@ -1,0 +1,82 @@
+<div class="row mb-3">
+  <div class="col-md-12">
+    <h1>
+     My bookmarks
+    </h1>
+
+    <a href="/bookmarks/new" class="btn btn-block btn-outline-secondary">
+      Add a new bookmark
+    </a>
+  </div>
+</div>
+
+
+<hr>
+
+<div class="row mb-3">
+  <div class="col-md-12">
+    <table class="table">
+      <tr>
+        <!--<th>-->
+        <!--  ID-->
+        <!--</th>-->
+
+        <th>
+          Movie
+        </th>
+
+        <!--<th>-->
+        <!--  User-->
+        <!--</th>-->
+
+        <th>
+          Created at
+        </th>
+
+        <!--<th>-->
+        <!--  Updated at-->
+        <!--</th>-->
+
+        <th>
+        </th>
+      </tr>
+    
+      <% @bookmarks.where(user_id: current_user.id).each do |bookmark| %>
+      <tr>
+        <!--<td>-->
+        <!--  <%= bookmark.id %>-->
+        <!--</td>-->
+
+        <td>
+          <a href="/movies/<%= bookmark.movie_id %>"><%= bookmark.movie.title %></a>
+          <!--<%= bookmark.movie_id %>-->
+        </td>
+
+        <!--<td>-->
+        <!--  <%= bookmark.user_id %>-->
+        <!--</td>-->
+
+        <td>
+          <%= time_ago_in_words(bookmark.created_at) %> ago
+        </td>
+        
+        <!--<td>-->
+        <!--  <%= time_ago_in_words(bookmark.updated_at) %> ago-->
+        <!--</td>-->
+
+        <!--<td>-->
+        <!--  <a href="/bookmarks/<%= bookmark.id %>">-->
+        <!--    Show details-->
+        <!--  </a>-->
+        <!--</td>-->
+        
+        <td>
+          <a href="/delete_bookmark/<%= bookmark.id %>">
+            Delete
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

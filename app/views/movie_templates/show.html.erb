@@ -2,9 +2,25 @@
   Movie #<%= @movie.id %> details
 </h1>
 
-<a href="/movies/<%= @movie.id %>/edit">
-  Edit movie
+<a href="/movies">
+  Go back
 </a>
+
+<hr>
+
+<!--<a href="/movies/<%= @movie.id %>/edit">-->
+<!--  Edit movie-->
+<!--</a>-->
+
+<form action="/create_bookmark_from_movies" method="post">
+  <input type="hidden" name="user_id" value="<%= current_user.id %>">
+  <input type="hidden" name="movie_id" value="<%= @movie.id %>">
+ 
+  <button class="btn btn-block btn-outline-secondary">
+    Create bookmark
+  </button>
+
+</form>
 
 <hr>
 
@@ -60,15 +76,20 @@
 
 </dl>
 
-<a href="/delete_movie/<%= @movie.id %>" class="btn btn-danger">
-  Delete movie
-</a>
+<div class="row">
+  <div class="col-md-6 text-center">
+    <a href="/delete_movie/<%= @movie.id %>" class="btn btn-danger btn-block">
+      Delete movie
+    </a>
+  </div> 
+  <div class="col-md-6 text-center">
+    <a href="/movies/<%= @movie.id %>/edit" class="btn btn-info btn-block">
+      Edit movie
+    </a>
+  </div>
+</div>
 
 <hr>
-
-<a href="/movies">
-  Go back
-</a>
 
 
 <div class="card mt-3 mb-5">
